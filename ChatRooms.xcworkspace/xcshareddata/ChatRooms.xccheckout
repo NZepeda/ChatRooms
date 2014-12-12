@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C9E30AA4-03F0-4A9F-B291-EC910F835A76</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ChatRooms</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>CBE6A7BC5D5A136D7377B949FA7DAA91BEFD18B9</key>
+		<string>https://github.com/NZepeda/ChatRooms.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ChatRooms.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>CBE6A7BC5D5A136D7377B949FA7DAA91BEFD18B9</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/NZepeda/ChatRooms.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>CBE6A7BC5D5A136D7377B949FA7DAA91BEFD18B9</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>CBE6A7BC5D5A136D7377B949FA7DAA91BEFD18B9</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ChatRooms</string>
+		</dict>
+	</array>
+</dict>
+</plist>

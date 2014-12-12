@@ -93,8 +93,9 @@
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if(!error){
             
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"AWESOME" message:@"Check parse to see if you signed up properly :)" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Hey there!" message:@"Welcome to Chatrooms!" delegate:nil cancelButtonTitle:@"Get Started" otherButtonTitles:nil, nil];
             [alert show];
+            [self.delegate signUpSuccessful];
         }
     }];
 

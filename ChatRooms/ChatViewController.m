@@ -111,20 +111,10 @@
     self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero;
     
     //show load earlier messages thing at top
-    self.showLoadEarlierMessagesHeader = YES;
+    self.showLoadEarlierMessagesHeader = NO;
 
     
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (void)didPressSendButton:(UIButton *)button
            withMessageText:(NSString *)text
@@ -133,27 +123,35 @@
                       date:(NSDate *)date
 {
     
-    //create a JSQMessage object
+    //create a sessage object
     JSQMessage *message = [[JSQMessage alloc] initWithSenderId:senderId
                                              senderDisplayName:senderDisplayName
                                                           date:date
                                                           text:text];
     
-    //add it to parse
-    if(message.text != 0){
+    //send it to parse
+    if(message.text.length != 0){
         
         PFObject *chat = [PFObject objectWithClassName:@"ChatActivity"];
         [chat setObject:self.chatroom forKey:@"chatroom"];
         [chat setObject:self.currentUser forKey:@"fromUser"];
-        [chat setObject:message.text forKey:@"text"];
+        [chat setObject: message.text forKey:@"text"];
         
         [chat saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            //add the message to the array
-            [self.messages addObject:message];
-            [JSQSystemSoundPlayer jsq_playMessageSentSound];
-            [self.collectionView reloadData];
-            [self finishSendingMessage];
-            [self scrollToBottomAnimated:YES];
+            
+            if(!error){
+                //add the message to the array
+                [self.messages addObject:message];
+                [JSQSystemSoundPlayer jsq_playMessageSentSound];
+                [self.collectionView reloadData];
+                [self finishSendingMessage];
+                [self scrollToBottomAnimated:YES];
+            }
+            else{
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Oh no!" message:@"Sorry something went wrong!" delegate:nil cancelButtonTitle:@"Dang it" otherButtonTitles:nil, nil];
+                [alert show];
+            }
+            
         }];
     }
     
@@ -337,7 +335,7 @@
     [self.stringObjectIds removeAllObjects];
 
     //Load messages from parse
-    PFQuery *queryForMessages = [PFQuery queryWithClassName:@"ChatActivity"]; //query the chat activity class from parse
+    PFQuery *queryForMessages = [PFQuery queryWithClassName:@"ChatActivity"]; //search the chat activity class from parse
     
     //only get back the messages belonging to the chatroom that we're currently in
     [queryForMessages whereKey:@"chatroom" equalTo: self.chatroom];
@@ -372,7 +370,7 @@
                     
                     for(int i = 0; i < self.messagesFromChatArray.count; i++){
                         
-                        //convert all the messages from parse into JSQMessage objects and store them in an array
+                        //convert all the messages from parse into Message objects and store them in an array
                         //These are the objects used to actually display in our chat
                         
                         [self.messages addObject: [[JSQMessage alloc]initWithSenderId: ((PFUser *)self.messagesFromChatArray[i][@"fromUser"]).objectId

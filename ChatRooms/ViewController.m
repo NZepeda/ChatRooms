@@ -51,6 +51,13 @@
         loginController.delegate = self;
     }
     
+    if([segue.destinationViewController isKindOfClass:[SignUpViewController class]]){
+        SignUpViewController *signUpVC = segue.destinationViewController;
+        signUpVC.delegate = self;
+    }
+    
+    
+    
 }
 
 
@@ -58,6 +65,13 @@
 #pragma mark - Login View Controller Delegate
 
 -(void)loginSuccessful
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
+
+#pragma mark - Sign Up View Controller Delegate
+-(void)signUpSuccessful
 {
     [self dismissViewControllerAnimated:YES completion:nil];
     [self dismissViewControllerAnimated:NO completion:nil];
